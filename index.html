@@ -465,11 +465,47 @@
       position: relative;
     }
 
+    .valentine-photo{
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90vw;          /* presque plein écran */
+      height: auto;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 24px;
+      z-index: 9999;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+    }
+
+    .valentine-photo.show-photo{
+      display: block;
+      animation: photoAppear 0.6s ease;
+    }
+
+    @keyframes photoAppear{
+      from{
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.92);
+      }
+      to{
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+   
+
     /* ✅ AJOUT : bouton Non qui peut bouger */
     #noBtn{
       position: relative;
       transition: transform 0.18s ease;
     }
+
+
+    
 
     /* ---------- MODAL ÉGÉRIE (ton snippet) ---------- */
     #egerieModal{
@@ -512,6 +548,53 @@
       color: rgba(255,255,255,.78);
       font-weight: 400;
     }
+
+    
+
+    /* Overlay Aperçu */
+    .apercu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .apercu-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Image Aperçu */
+    .apercu-img {
+      max-width: 90vw;     /* largeur max = 90% écran */
+      max-height: 85vh;    /* hauteur max = 85% écran */
+      object-fit: contain;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
+
+    /* Bouton fermer */
+    .apercu-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    
   </style>
 </head>
 
@@ -527,7 +610,7 @@
 
       <div class="links">
         <a href="menu.html">Menu</a>
-        <a href="#ambiance">Ambiance</a>
+        <a href="#ambiance">Aperçu</a>
         <a href="#infos">Infos</a>
       </div>
 
@@ -728,7 +811,13 @@
           <button class="btn primary" id="yesBtn" type="button">Oui</button>
           <button class="btn" id="noBtn" type="button">Non</button>
         </div>
-      </div>
+
+        <img
+          src="./mariage.png"
+          id="valentinePhoto"
+          class="valentine-photo"
+        />
+     </div>
     </div>
   </div>
 
@@ -740,6 +829,12 @@
       <p class="egerie-caption">Notre spécialité 🍷</p>
     </div>
   </div>
+
+  <div class="apercu-overlay" id="apercuOverlay">
+    <button class="apercu-close" id="apercuClose" type="button">Fermer</button>
+    <img src="./nekfeu.png" alt="Aperçu" class="apercu-img" />
+  </div>
+
 
   <script>
     // ------- MODAL RÉSERVATION -------
@@ -765,12 +860,6 @@
     document.getElementById("confirm").onclick = () => {
       booking.style.display = "none";
       valentine.classList.add("open");
-    };
-
-    document.getElementById("yesBtn").onclick = () => {
-      overlay.classList.remove("open");
-      overlay.setAttribute("aria-hidden", "true");
-      // rien qui pop-up ✅
     };
 
     overlay.addEventListener("click", (e) => {
@@ -809,22 +898,48 @@
       }
     });
 
-    // ✅ AJOUT : NON QUI FUIT
+    
+    const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
+    const valentinePhoto = document.getElementById("valentinePhoto");
 
-    const moveNoBtn = () => {
-      // mouvements raisonnables dans le modal
-      const x = Math.floor(Math.random() * 220) - 110; // -110..110
-      const y = Math.floor(Math.random() * 110) - 40;  // -40..70
+    // OUI → afficher la photo
+    yesBtn.addEventListener("click", () => {
+      valentinePhoto.style.display = "block";
+    });
+
+    // NON → fuit doucement mais reste visible
+    noBtn.addEventListener("mouseenter", () => {
+      const x = Math.random() * 120 - 60;
+      const y = Math.random() * 60 - 30;
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
-    };
+    });
 
-    if (noBtn) {
-      noBtn.addEventListener("mouseenter", moveNoBtn);
-      noBtn.addEventListener("click", moveNoBtn);
+    // clic en dehors → fermer le modal
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove("open");
+        overlay.setAttribute("aria-hidden", "true");
+      }
+    });
+
+    const apercuLink = document.querySelector('a[href="#ambiance"]');
+    const apercuOverlay = document.getElementById("apercuOverlay");
+
+    if (apercuLink) {
+      apercuLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        apercuOverlay.classList.add("show");
+      });
     }
+
+    apercuOverlay.addEventListener("click", () => {
+      apercuOverlay.classList.remove("show");
+    });
+
   </script>
+
+ 
 
 </body>
 </html>
-
