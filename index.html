@@ -2,211 +2,370 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>La Juanita — Rabat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>La Juanita – Rabat | Cuisine & Ambiance</title>
+  <meta name="description" content="La Juanita à Rabat : une adresse chaleureuse, une cuisine généreuse, une ambiance élégante. Réservez votre table." />
+
+  <!-- Premium fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&family=Allura&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#07070a;
-      --card: rgba(15,16,22,.55);
-      --line: rgba(255,255,255,.10);
-      --text: rgba(255,255,255,.86);
-      --muted: rgba(255,255,255,.62);
-
-      /* ✅ Jaune du slogan (tu peux ajuster si besoin) */
-      --accent:#f0c04a;
-      --accent2:#d7a93b;
-
-      --pink: rgba(255,92,122,.85);
+      --text:#f2f3f5;
+      --muted:#c2c8d3;
+      --muted2:rgba(255,255,255,.68);
+      --line:rgba(255,255,255,.10);
+      --card:rgba(17,19,26,.72);
+      --radius:18px;
+      --accent:#f5b942;
+      --accent2:#ff5c7a;
+      --shadow: 0 18px 50px rgba(0,0,0,.45);
     }
 
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;}
-    a{color:inherit;text-decoration:none}
-    .container{width:min(1120px, 92vw);margin:0 auto}
+    html,body{height:100%}
 
-    /* Background image feel */
     body{
-      background:
-        radial-gradient(1200px 600px at 30% -10%, rgba(255,255,255,.08), transparent 60%),
-        radial-gradient(900px 500px at 90% 20%, rgba(255,255,255,.06), transparent 55%),
-        linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.5)),
-        url("./bg.jpg");
+      margin:0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      overflow-x:hidden;
+
+      background: linear-gradient(180deg, rgba(0,0,0,.68), rgba(0,0,0,.88)),
+                  url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2400&q=80");
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
     }
 
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1100px, 92vw); margin:0 auto;}
+
     /* ---------- NAV ---------- */
     .nav{
-      position:sticky;top:0;z-index:50;
-      backdrop-filter: blur(14px);
-      background: rgba(0,0,0,.35);
-      border-bottom: 1px solid var(--line);
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(10,11,14,.55);
+      border-bottom:1px solid var(--line);
     }
     .nav-inner{
-      display:flex;align-items:center;justify-content:space-between;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
       padding:14px 0;
-      gap:16px;
     }
-    .brand{display:flex;align-items:center;gap:10px}
-    .logo{width:38px;height:38px;border-radius:999px;object-fit:cover}
-    .brand-name{font-weight:700;letter-spacing:.02em}
 
-    .links{display:flex;gap:22px;color:rgba(255,255,255,.70)}
-    .links a{padding:8px 0}
-    .links a:hover{color:rgba(255,255,255,.95)}
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo{
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      box-shadow: 0 4px 14px rgba(0,0,0,.35);
+    }
+    .brand-name{
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
 
-    .right-actions{display:flex;gap:10px;align-items:center}
+    .links{
+      display:flex;
+      gap:18px;
+      color:rgba(255,255,255,.72);
+      font-weight:500;
+      font-size:14px;
+      justify-content:center;
+      flex: 1;
+    }
+    .links a{opacity:.9}
+    .links a:hover{opacity:1;color:white}
 
-    /* ---------- BUTTONS ---------- */
+    .right-actions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-end;
+      min-width: 220px;
+    }
+
     .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:10px 16px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      color: rgba(255,255,255,.92);
-      font-weight:700;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      padding:10px 14px;
+      border-radius:14px;
+      font-weight:600;
       cursor:pointer;
+      color:white;
       transition: transform .12s ease, background .12s ease, opacity .12s ease;
-      user-select:none;
     }
-    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.09)}
+    .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.09)}
     .btn.primary{
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color:#fff; /* ✅ texte blanc comme tu voulais */
-      border:none;
-      font-weight:800;
-      box-shadow: 0 12px 30px rgba(240,192,74,.20);
+      background: linear-gradient(135deg, #b8892a, #d6a84a) !important;
+      color: #ffffff !important;
+      border: none !important;
+      font-weight: 700;
+      box-shadow: 0 6px 18px rgba(184, 137, 42, 0.35);
     }
-    .btn.primary:hover{opacity:.95}
+    .btn.primary:hover{opacity:.96}
+
+    @media(max-width:900px){
+      .links{display:none}
+      .right-actions{min-width:auto}
+    }
+
+    /* ---------- TYPO (luxe) ---------- */
+    h1,h2{
+      font-family:'Playfair Display', serif;
+      text-transform:uppercase;
+      letter-spacing:0.22em;
+      font-weight:400;
+      margin:0;
+    }
+    h3,h4{
+      font-family:'Playfair Display', serif;
+      letter-spacing:0.08em;
+      font-weight:500;
+      margin:0 0 10px;
+    }
+    p{margin:0; line-height:1.85; color:var(--muted2); font-weight:300}
+
+    .elegant-script{
+      font-family:'Allura', cursive;
+      font-size:44px;
+      letter-spacing:.05em;
+      color: rgba(245,185,66,.92);
+      margin-top:12px;
+      text-transform:none;
+    }
 
     /* ---------- HERO ---------- */
-    header{padding:26px 0 12px}
+    header{padding:66px 0 36px;}
     .hero{
       display:grid;
-      grid-template-columns: 1.2fr .85fr;
-      gap:18px;
+      grid-template-columns: 1.2fr .8fr;
+      gap:26px;
+      align-items:stretch;
     }
-    @media(max-width:980px){
+    @media(max-width:900px){
       .hero{grid-template-columns:1fr}
     }
 
     .card{
-      border:1px solid rgba(255,255,255,.10);
       background: var(--card);
-      border-radius:22px;
-      padding:20px;
-      backdrop-filter: blur(18px);
-      box-shadow: 0 24px 80px rgba(0,0,0,.45);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow: var(--shadow);
     }
 
-    .hero-left-topline{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.62);text-transform:uppercase;letter-spacing:.22em;font-size:12px}
+    .hero-left-topline{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      margin-bottom:14px;
+      color:rgba(255,255,255,.72);
+      font-size:13px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      font-weight:500;
+    }
     .pill{
-      padding:6px 12px;border-radius:999px;
-      border:1px solid rgba(240,192,74,.35);
-      color: rgba(240,192,74,.95);
-      font-weight:800;
-      letter-spacing:.18em;
+      display:inline-flex;
+      align-items:center;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(245,185,66,.35);
+      color:rgba(245,185,66,.95);
+      background: rgba(245,185,66,.08);
+      letter-spacing:.16em;
+      font-weight:600;
+      text-transform:uppercase;
+      font-size:12px;
     }
 
     .hero-title{
-      margin:18px 0 8px;
-      font-size:68px;line-height:1.02;
-      letter-spacing:.08em;
-      font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
-      text-transform:uppercase;
-    }
-    @media(max-width:560px){ .hero-title{font-size:46px} }
-
-    .elegant-script{
-      font-size:44px;
-      color: rgba(240,192,74,.95);
-      font-family: "Brush Script MT", "Segoe Script", cursive;
-      letter-spacing:.03em;
+      font-size: clamp(42px, 5vw, 64px);
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      line-height: 1.05;
       margin-bottom: 10px;
     }
-    @media(max-width:560px){ .elegant-script{font-size:32px} }
 
-    p{margin:0;color:var(--muted);font-size:18px;line-height:1.6}
-
-    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-    .mini{
+    .hero-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
       margin-top:18px;
+    }
+
+    .mini{
+      display:flex;
+      gap:26px;
+      margin-top:22px;
+      padding-top:16px;
+      border-top:1px solid var(--line);
+      color:rgba(255,255,255,.70);
+      font-size:13px;
+    }
+    .mini strong{
+      display:block;
+      margin-top:6px;
+      color: rgba(255,255,255,.9);
+      font-weight:500;
+      letter-spacing:.02em;
+    }
+
+    /* Right column cards */
+    .stack{display:flex; flex-direction:column; gap:14px;}
+    .stack .card{box-shadow:none; background: rgba(15,16,22,.62);}
+
+    /* ---------- SECTION TITLES ---------- */
+    .section{
+      padding: 22px 0 30px;
+    }
+    .section-title{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:14px;
+      margin: 10px 0 16px;
+    }
+    .section-title h2{
+      font-size: 24px;
+    }
+    .section-title .note{
+      color: rgba(255,255,255,.70);
+      font-weight:400;
+      letter-spacing:.02em;
+    }
+
+    /* ---------- FEATURES (3 cards) ---------- */
+    .grid{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
-      gap:10px;
-      border-top:1px solid rgba(255,255,255,.08);
-      padding-top:14px;
-      color: rgba(255,255,255,.65);
-      font-size:14px;
+      gap:16px;
+      margin-top: 18px;
     }
-    .mini strong{display:block;color:rgba(255,255,255,.92);margin-top:6px;font-size:16px}
-
-    .stack{display:flex;flex-direction:column;gap:16px}
-    .card h3{
-      margin:0 0 8px;
-      font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
-      font-size:30px;
-      letter-spacing:.03em;
+    @media(max-width:900px){
+      .grid{grid-template-columns:1fr}
+    }
+    .feature-title{
+      font-family:'Playfair Display', serif;
+      letter-spacing:.08em;
+      font-weight:500;
+      color: rgba(255,255,255,.92);
+      margin-bottom:10px;
+    }
+    .feature-text{
+      color: rgba(255,255,255,.70);
+      font-weight:300;
+      line-height:1.75;
     }
 
-    /* ---------- SECTION ---------- */
-    .section{margin-top:18px}
-    .section-title{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:20px 0 14px}
-    .section-title h2{
-      margin:0;
-      font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
-      letter-spacing:.12em;
-      text-transform:uppercase;
+    /* ---------- INFOS PRATIQUES ---------- */
+    .info-wrap{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 20px;
+      border-radius: 18px;
+      overflow:hidden;
+      border: 1px solid var(--line);
+      background: rgba(10,11,14,.55);
+      box-shadow: var(--shadow);
     }
-    .note{color: rgba(255,255,255,.62)}
-
-    /* ---------- INFOS / HOURS ---------- */
-    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    @media(max-width:900px){ .grid2{grid-template-columns:1fr} }
-
-    .title-big{
-      margin:0 0 10px;
-      font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
-      font-size:52px;
-      letter-spacing:.04em;
+    @media(max-width:900px){
+      .info-wrap{grid-template-columns:1fr}
     }
-    .under{
-      width:86px;height:4px;border-radius:99px;background: var(--pink);
-      margin:10px auto 0;
+    .info-col{
+      padding: 34px 30px;
+      position:relative;
     }
-    .info-item{text-align:center;padding:18px 0}
-    .info-item .k{font-weight:700;color:rgba(255,255,255,.92);margin-bottom:8px;letter-spacing:.02em}
-    .info-item .v{color:rgba(255,255,255,.62);font-weight:300;line-height:1.7}
+    .info-col + .info-col{
+      border-left:1px solid rgba(255,255,255,.08);
+    }
+    @media(max-width:900px){
+      .info-col + .info-col{border-left:none; border-top:1px solid rgba(255,255,255,.08);}
+    }
 
-    /* ✅ “Salma CHNAYTI” cliquable MAIS visuellement normal */
-    .egerie-link{
+    .info-head{
+      text-align:center;
+      margin-bottom: 22px;
+    }
+    .info-head h3{
+      font-size: 34px;
+      letter-spacing:.06em;
+      text-transform:none;
+      margin-bottom: 10px;
+    }
+    .underline{
+      width: 70px;
+      height: 2px;
+      margin: 0 auto;
+      background: rgba(255,92,122,.75);
+      border-radius: 99px;
+    }
+
+    .info-item{
+      text-align:center;
+      padding: 18px 0;
+    }
+    .info-item .k{
+      font-weight:600;
+      color: rgba(255,255,255,.92);
+      margin-bottom: 8px;
+      letter-spacing:.02em;
+    }
+    .info-item .v{
       color: rgba(255,255,255,.62);
-      cursor:pointer;
-      text-decoration:none;
-      border-bottom:1px dashed rgba(255,255,255,.20);
-      padding-bottom:2px;
-    }
-    .egerie-link:hover{
-      color: rgba(255,255,255,.85);
-      border-bottom-color: rgba(240,192,74,.55);
+      font-weight:300;
+      line-height:1.7;
     }
 
-    .hours{margin-top:10px}
+    /* --- Égérie cliquable MAIS style normal --- */
+    #openEgerie{
+      color: inherit;
+      font: inherit;
+      font-weight: inherit;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    #openEgerie:hover{
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(245,185,66,.55);
+    }
+
+    .hours{
+      margin-top: 10px;
+    }
     .row{
-      display:flex;justify-content:space-between;align-items:center;
-      padding:18px 0;border-top:1px dashed rgba(255,255,255,.14);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding: 18px 0;
+      border-top: 1px dashed rgba(255,255,255,.14);
       color: rgba(255,255,255,.78);
       font-weight:400;
     }
     .row:first-child{border-top:none}
-    .row .day{font-weight:600;color:rgba(255,255,255,.92)}
-    .row .time{color:rgba(255,255,255,.64)}
-    .dot{
-      display:inline-block;width:6px;height:6px;border-radius:50%;
-      background: var(--pink);
-      margin:0 10px;transform: translateY(-1px);
+    .row .day{font-weight:500; color: rgba(255,255,255,.92)}
+    .row .time{color: rgba(255,255,255,.64); font-weight:400}
+    .row .dot{
+      display:inline-block;
+      width:6px;height:6px;border-radius:50%;
+      background: rgba(255,92,122,.85);
+      margin: 0 10px;
+      transform: translateY(-1px);
     }
 
     /* ---------- FOOTER ---------- */
@@ -216,24 +375,32 @@
       color:rgba(255,255,255,.62);
       font-size:13px;
       background: rgba(0,0,0,.45);
-      margin-top:26px;
     }
-    .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
 
-    /* ---------- MODALS ---------- */
+    /* ---------- MODAL RESA (overlay) ---------- */
     .overlay{
-      position:fixed;inset:0;
+      position:fixed;
+      inset:0;
       background: rgba(0,0,0,.65);
-      display:none;align-items:center;justify-content:center;
+      display:none;
+      align-items:center;
+      justify-content:center;
       z-index:100;
-      padding:18px;
+      padding: 18px;
     }
     .overlay.open{display:flex}
 
     .modal{
       background:#0c0d12;
       border-radius:20px;
-      width:min(720px, 94vw);
+      width:min(640px, 94vw);
       border:1px solid rgba(255,255,255,.12);
       overflow:hidden;
       box-shadow: 0 30px 80px rgba(0,0,0,.55);
@@ -241,25 +408,33 @@
     .modal-header{
       padding:16px 18px;
       border-bottom:1px solid rgba(255,255,255,.10);
-      display:flex;justify-content:space-between;align-items:center;gap:10px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
     }
-    .modal-header strong{font-weight:700;letter-spacing:.02em}
+    .modal-header strong{
+      font-weight:600;
+      letter-spacing:.02em;
+    }
 
-    .modal-body{padding:20px}
-
+    .modal-body{padding:20px;}
     .form{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:12px;
     }
-    @media(max-width:650px){ .form{grid-template-columns:1fr} }
-    .form input,.form select{
+    @media(max-width:650px){
+      .form{grid-template-columns:1fr}
+    }
+
+    .form input, .form select{
       width:100%;
       padding:12px 12px;
       border-radius:12px;
       border:1px solid rgba(255,255,255,.12);
       background:#11121a;
-      color:#fff;
+      color:white;
       outline:none;
     }
     .form input::placeholder{color: rgba(255,255,255,.45)}
@@ -267,59 +442,75 @@
     .valentine{
       display:none;
       text-align:center;
-      padding-top:6px;
-      position:relative;
-      min-height: 210px;
+      padding-top: 6px;
     }
     .valentine.open{display:block}
+
     .valentine h2{
-      margin:0 0 14px;
-      font-size:38px;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+      font-size: 22px;
+      letter-spacing:.10em;
+      margin-bottom: 12px;
     }
     .valentine p{
       color: rgba(255,255,255,.70);
-      margin-bottom: 18px;
-      font-size: 22px;
+      margin-bottom: 16px;
     }
 
+    /* ✅ AJOUT : zone des 2 boutons Oui / Non */
     .valentine-actions{
       display:flex;
       justify-content:center;
-      gap:14px;
-      position:relative;
-      padding-bottom: 20px;
+      gap:12px;
+      margin-top: 8px;
+      position: relative;
     }
 
-    /* ✅ bouton NON qui bouge */
+    /* ✅ AJOUT : bouton Non qui peut bouger */
     #noBtn{
-      position:relative;
+      position: relative;
+      transition: transform 0.18s ease;
     }
 
-    /* ---------- ÉGÉRIE MODAL ---------- */
-    .egerie-wrap{
+    /* ---------- MODAL ÉGÉRIE (ton snippet) ---------- */
+    #egerieModal{
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,.65);
+      z-index: 120;
+      padding: 18px;
+    }
+    #egerieModal.show{ display: flex; }
+
+    #egerieModal .modal-content{
+      background:#0c0d12;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:20px;
+      width:min(520px, 94vw);
+      box-shadow: 0 30px 80px rgba(0,0,0,.55);
+      padding: 18px;
       text-align:center;
     }
+    #egerieModal .close{
+      float: right;
+      margin-left: auto;
+    }
     .egerie-photo{
-      width:min(420px, 86vw);
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: 0 18px 55px rgba(0,0,0,.55);
       display:block;
-      margin: 10px auto 14px;
-      object-fit:cover;
+      width: 100%;
+      max-width: 360px;
+      margin: 18px auto 10px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 18px 40px rgba(0,0,0,.45);
+      object-fit: cover;
     }
     .egerie-caption{
-      margin:0 0 8px;
-      color: rgba(255,255,255,.75);
-      font-size:16px;
-    }
-
-    /* small responsive */
-    @media(max-width:900px){
-      .links{display:none}
+      margin-top: 10px;
+      color: rgba(255,255,255,.78);
+      font-weight: 400;
     }
   </style>
 </head>
@@ -357,7 +548,7 @@
         </div>
 
         <h1 class="hero-title">La Juanita</h1>
-        <div class="elegant-script">From Mexico to Morocco</div>
+        <div class="elegant-script">From Casablanca to Marrakech</div>
 
         <p style="margin-top:14px;">
           Une cuisine généreuse, une atmosphère élégante, et le genre d’endroit où on a envie de prendre son temps.
@@ -366,17 +557,23 @@
 
         <div class="hero-actions">
           <button class="btn primary" id="openModal2">Réserver une table</button>
-
-          <!-- ✅ Appeler = vrai numéro -->
-          <a class="btn" href="tel:+212621342782">Appeler</a>
-
+          <a href="tel:+212621342782" class="btn">Appeler</a>
           <button class="btn" id="mapsBtn">Itinéraire</button>
         </div>
 
         <div class="mini">
-          <div>Ambiance <strong>Chaleureuse & intimiste</strong></div>
-          <div>Spécialités <strong>Plats à partager</strong></div>
-          <div>Service <strong>Midi & soir</strong></div>
+          <div>
+            Ambiance
+            <strong>Chaleureuse & intimiste</strong>
+          </div>
+          <div>
+            Spécialités
+            <strong>Plats à partager</strong>
+          </div>
+          <div>
+            Service
+            <strong>Midi & soir</strong>
+          </div>
         </div>
       </div>
 
@@ -394,22 +591,41 @@
 
         <div class="card">
           <h3>Conseil</h3>
-          <p>Réservation recommandée en soirée, surtout le week-end.</p>
+          <p>Allez-y avec votre Meknesi.</p>
         </div>
       </div>
     </div>
 
+    <!-- Features -->
     <div class="section">
       <div class="section-title">
         <h2>Ce qui fait La Juanita</h2>
         <div class="note">Une expérience simple, mais mémorable.</div>
       </div>
 
-      <div class="grid2">
-        <div class="card" id="infos">
-          <div style="text-align:center">
-            <div class="title-big">Infos pratiques</div>
-            <div class="under"></div>
+      <div class="grid">
+        <div class="card">
+          <div class="feature-title">Accueil & service</div>
+          <div class="feature-text">Un rythme tranquille, un service attentif, et une vraie sensation de confort.</div>
+        </div>
+        <div class="card">
+          <div class="feature-title">Ambiance</div>
+          <div class="feature-text">Lumières douces, musique discrète, et tables pensées pour discuter.</div>
+        </div>
+        <div class="card">
+          <div class="feature-title">Desserts</div>
+          <div class="feature-text">Le petit final qui fait la différence — parfait à partager.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Infos pratiques -->
+    <div class="section" id="infos">
+      <div class="info-wrap">
+        <div class="info-col">
+          <div class="info-head">
+            <h3>Infos pratiques</h3>
+            <div class="underline"></div>
           </div>
 
           <div class="info-item">
@@ -422,24 +638,23 @@
             <div class="v">13 Novembre 2025</div>
           </div>
 
-          <!-- ✅ Égerie cliquable + modal photo -->
           <div class="info-item">
             <div class="k">Égérie</div>
             <div class="v">
-              <span id="openEgerie" class="egerie-link">Salma CHNAYTI</span>
+              <span id="openEgerie">Salma CHNAYTI</span>
             </div>
           </div>
 
           <div class="info-item">
             <div class="k">Moyens de paiement</div>
-            <div class="v">Kiss of Life</div>
+            <div class="v">Kiss of life</div>
           </div>
         </div>
 
-        <div class="card">
-          <div style="text-align:center">
-            <div class="title-big">Horaires</div>
-            <div class="under"></div>
+        <div class="info-col">
+          <div class="info-head">
+            <h3>Horaires</h3>
+            <div class="underline"></div>
           </div>
 
           <div class="hours">
@@ -467,8 +682,10 @@
         </div>
       </div>
     </div>
+
   </header>
 
+  <!-- FOOTER -->
   <footer>
     <div class="container footer-inner">
       <div>© 2026 La Juanita — Rabat</div>
@@ -476,7 +693,7 @@
     </div>
   </footer>
 
-  <!-- ✅ MODAL RÉSERVATION + VALENTINE -->
+  <!-- MODAL RÉSERVATION -->
   <div class="overlay" id="overlay" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-label="Réservation">
       <div class="modal-header">
@@ -502,35 +719,30 @@
         </div>
       </div>
 
+      <!-- ✅ MODIF : ajout du bouton NON + conteneur -->
       <div class="modal-body valentine" id="valentine">
         <h2>Dernière Étape</h2>
         <p>Salma, une joyeuse Saint-Valentin avec moi ?</p>
 
         <div class="valentine-actions">
-          <button class="btn primary" id="yesBtn">Oui</button>
-          <button class="btn" id="noBtn">Non</button>
+          <button class="btn primary" id="yesBtn" type="button">Oui</button>
+          <button class="btn" id="noBtn" type="button">Non</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ✅ MODAL ÉGÉRIE (photo) -->
-  <div class="overlay" id="egerieOverlay" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-label="Égérie">
-      <div class="modal-header">
-        <strong>Égérie</strong>
-        <button class="btn" id="closeEgerie" aria-label="Fermer">Fermer</button>
-      </div>
-
-      <div class="modal-body egerie-wrap">
-        <img src="./salma.jpg" class="egerie-photo" alt="Salma CHNAYTI">
-        <p class="egerie-caption">L’égérie de La Juanita 💛</p>
-      </div>
+  <!-- MODAL ÉGÉRIE (TON SNIPPET) -->
+  <div class="modal" id="egerieModal">
+    <div class="modal-content">
+      <button class="btn close" id="closeEgerie">Fermer</button>
+      <img src="./salma.jpg" class="egerie-photo" alt="Salma CHNAYTI" />
+      <p class="egerie-caption">Notre spécialité 🍷</p>
     </div>
   </div>
 
   <script>
-    // ---------- RÉSERVATION MODAL ----------
+    // ------- MODAL RÉSERVATION -------
     const overlay = document.getElementById("overlay");
     const booking = document.getElementById("booking");
     const valentine = document.getElementById("valentine");
@@ -555,57 +767,63 @@
       valentine.classList.add("open");
     };
 
-    // ✅ Oui = juste fermer (aucun popup)
     document.getElementById("yesBtn").onclick = () => {
       overlay.classList.remove("open");
       overlay.setAttribute("aria-hidden", "true");
+      // rien qui pop-up ✅
     };
 
-    // ✅ Non qui bouge
-    const noBtn = document.getElementById("noBtn");
-    const moveNo = () => {
-      // déplacement aléatoire (dans une zone raisonnable)
-      const x = Math.floor(Math.random() * 220) - 110; // -110..110
-      const y = Math.floor(Math.random() * 80) - 20;   // -20..60
-      noBtn.style.transform = `translate(${x}px, ${y}px)`;
-    };
-    noBtn.addEventListener("mouseenter", moveNo);
-    noBtn.addEventListener("click", moveNo);
-
-    // Fermer modal en cliquant sur l’overlay
     overlay.addEventListener("click", (e) => {
-      if (e.target === overlay) {
+      if(e.target === overlay){
         overlay.classList.remove("open");
         overlay.setAttribute("aria-hidden", "true");
       }
     });
 
-    // ---------- MAPS ----------
+    // ------- BOUTON ITINÉRAIRE -------
     document.getElementById("mapsBtn").onclick = () => {
       window.open("https://www.google.com/maps/search/?api=1&query=La+Juanita+Rabat", "_blank");
     };
 
-    // ---------- ÉGÉRIE MODAL ----------
-    const egerieOverlay = document.getElementById("egerieOverlay");
+    // ------- MODAL ÉGÉRIE -------
     const openEgerie = document.getElementById("openEgerie");
+    const egerieModal = document.getElementById("egerieModal");
     const closeEgerie = document.getElementById("closeEgerie");
 
-    openEgerie.addEventListener("click", () => {
-      egerieOverlay.classList.add("open");
-      egerieOverlay.setAttribute("aria-hidden", "false");
-    });
+    if (openEgerie) {
+      openEgerie.addEventListener("click", () => {
+        egerieModal.classList.add("show");
+      });
+    }
 
-    closeEgerie.addEventListener("click", () => {
-      egerieOverlay.classList.remove("open");
-      egerieOverlay.setAttribute("aria-hidden", "true");
-    });
+    if (closeEgerie) {
+      closeEgerie.addEventListener("click", () => {
+        egerieModal.classList.remove("show");
+      });
+    }
 
-    egerieOverlay.addEventListener("click", (e) => {
-      if (e.target === egerieOverlay) {
-        egerieOverlay.classList.remove("open");
-        egerieOverlay.setAttribute("aria-hidden", "true");
+    // fermer si on clique sur le fond (en dehors du contenu)
+    egerieModal.addEventListener("click", (e) => {
+      if (e.target === egerieModal) {
+        egerieModal.classList.remove("show");
       }
     });
+
+    // ✅ AJOUT : NON QUI FUIT
+    const noBtn = document.getElementById("noBtn");
+
+    const moveNoBtn = () => {
+      // mouvements raisonnables dans le modal
+      const x = Math.floor(Math.random() * 220) - 110; // -110..110
+      const y = Math.floor(Math.random() * 110) - 40;  // -40..70
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    };
+
+    if (noBtn) {
+      noBtn.addEventListener("mouseenter", moveNoBtn);
+      noBtn.addEventListener("click", moveNoBtn);
+    }
   </script>
+
 </body>
 </html>
