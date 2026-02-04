@@ -549,41 +549,33 @@
       font-weight: 400;
     }
 
-
-    .apercu-modal {
-      display: none;
+    #apercuModal{
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.85);
-      z-index: 9999;
-
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
+      background: rgba(0,0,0,.65);
+      z-index: 120;
+      padding: 18px;
     }
+    #apercuModal.show{ display: flex; }
 
-    .apercu-modal.show {
-      display: flex;
-    }
-
-    .apercu-photo {
-      max-width: 80vw;   /* ⬅ limite la largeur */
-      max-height: 80vh;  /* ⬅ limite la hauteur */
+    .apercu-photo{
+      display:block;
+      width: 100%;
+      max-width: 720px;      /* ✅ plus grand que l’égérie */
+      max-height: 80vh;      /* ✅ évite plein écran */
+      margin: 18px auto 10px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 18px 40px rgba(0,0,0,.45);
       object-fit: contain;
-      border-radius: 16px;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-    }
+      background: #000;
+}
 
-    /* bouton fermer */
-    .apercu-modal .close {
-      position: absolute;
-      top: 30px;
-      right: 30px;
-    }
 
     
-
-
 
     
   </style>
@@ -821,9 +813,13 @@
     </div>
   </div>
 
-  <div class="apercu-overlay" id="apercuOverlay">
-    <button class="apercu-close" id="apercuClose" type="button">Fermer</button>
-    <img src="./nekfeu.png" alt="Aperçu" class="apercu-img" />
+
+  <div class="modal" id="apercuModal">
+    <div class="modal-content">
+      <button class="btn close" id="closeApercu">Fermer</button>
+      <img src="./nekfeu.png" class="apercu-photo" alt="Aperçu" />
+      <p class="egerie-caption">Aperçu</p>
+    </div>
   </div>
 
 
@@ -914,31 +910,34 @@
       }
     });
 
+    const apercuLink = document.querySelector('a[href="#ambiance"]');
+    const apercuModal = document.getElementById("apercuModal");
+    const closeApercu = document.getElementById("closeApercu");
 
-  </script>
+    if (apercuLink) {
+      apercuLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        apercuModal.classList.add("show");
+      });
+    }
 
-  <script>
-  const apercuLink = document.querySelector('a[href="#ambiance"]');
-  const apercuOverlay = document.getElementById("apercuOverlay");
-  const apercuClose = document.getElementById("apercuClose");
+    if (closeApercu) {
+      closeApercu.addEventListener("click", () => {
+        apercuModal.classList.remove("show");
+      });
+    }
 
-  if (apercuLink && apercuOverlay && apercuClose) {
-    apercuLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      apercuOverlay.classList.add("open");
-    });
-
-    apercuClose.addEventListener("click", () => {
-      apercuOverlay.classList.remove("open");
-    });
-
-    apercuOverlay.addEventListener("click", (e) => {
-      if (e.target === apercuOverlay) {
-        apercuOverlay.classList.remove("open");
+    // fermer si on clique sur le fond (comme l’égérie)
+    apercuModal.addEventListener("click", (e) => {
+      if (e.target === apercuModal) {
+        apercuModal.classList.remove("show");
       }
     });
-  }
+
+
   </script>
+
+
 
  
 
