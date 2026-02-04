@@ -914,18 +914,28 @@
       }
     });
 
+   
+
     const apercuLink = document.querySelector('a[href="#ambiance"]');
     const apercuOverlay = document.getElementById("apercuOverlay");
+    const apercuClose = document.getElementById("apercuClose");
 
     if (apercuLink) {
       apercuLink.addEventListener("click", (e) => {
         e.preventDefault();
-        apercuOverlay.classList.add("show");
+        apercuOverlay.classList.add("open"); // ✅ BONNE CLASSE
       });
     }
 
-    apercuOverlay.addEventListener("click", () => {
-      apercuOverlay.classList.remove("show");
+    apercuClose.addEventListener("click", () => {
+      apercuOverlay.classList.remove("open");
+    });
+
+    // clic sur le fond pour fermer
+    apercuOverlay.addEventListener("click", (e) => {
+      if (e.target === apercuOverlay) {
+        apercuOverlay.classList.remove("open");
+      }
     });
 
   </script>
