@@ -920,23 +920,22 @@
     const apercuOverlay = document.getElementById("apercuOverlay");
     const apercuClose = document.getElementById("apercuClose");
 
-    if (apercuLink) {
+    if (apercuLink && apercuOverlay && apercuClose) {
       apercuLink.addEventListener("click", (e) => {
         e.preventDefault();
-        apercuOverlay.classList.add("open"); // ✅ BONNE CLASSE
+        apercuOverlay.classList.add("open");
+      });
+
+      apercuClose.addEventListener("click", () => {
+        apercuOverlay.classList.remove("open");
+      });
+
+      apercuOverlay.addEventListener("click", (e) => {
+        if (e.target === apercuOverlay) {
+          apercuOverlay.classList.remove("open");
+        }
       });
     }
-
-    apercuClose.addEventListener("click", () => {
-      apercuOverlay.classList.remove("open");
-    });
-
-    // clic sur le fond pour fermer
-    apercuOverlay.addEventListener("click", (e) => {
-      if (e.target === apercuOverlay) {
-        apercuOverlay.classList.remove("open");
-      }
-    });
 
   </script>
 
