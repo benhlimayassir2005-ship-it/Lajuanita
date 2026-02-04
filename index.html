@@ -549,6 +549,38 @@
       font-weight: 400;
     }
 
+
+    .apercu-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 9999;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .apercu-modal.show {
+      display: flex;
+    }
+
+    .apercu-photo {
+      max-width: 80vw;   /* ⬅ limite la largeur */
+      max-height: 80vh;  /* ⬅ limite la hauteur */
+      object-fit: contain;
+      border-radius: 16px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    }
+
+    /* bouton fermer */
+    .apercu-modal .close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+    }
+
     
 
 
