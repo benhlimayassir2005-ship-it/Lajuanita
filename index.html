@@ -914,29 +914,30 @@
       }
     });
 
-   
 
-    const apercuLink = document.querySelector('a[href="#ambiance"]');
-    const apercuOverlay = document.getElementById("apercuOverlay");
-    const apercuClose = document.getElementById("apercuClose");
+  </script>
 
-    if (apercuLink && apercuOverlay && apercuClose) {
-      apercuLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        apercuOverlay.classList.add("open");
-      });
+  <script>
+  const apercuLink = document.querySelector('a[href="#ambiance"]');
+  const apercuOverlay = document.getElementById("apercuOverlay");
+  const apercuClose = document.getElementById("apercuClose");
 
-      apercuClose.addEventListener("click", () => {
+  if (apercuLink && apercuOverlay && apercuClose) {
+    apercuLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      apercuOverlay.classList.add("open");
+    });
+
+    apercuClose.addEventListener("click", () => {
+      apercuOverlay.classList.remove("open");
+    });
+
+    apercuOverlay.addEventListener("click", (e) => {
+      if (e.target === apercuOverlay) {
         apercuOverlay.classList.remove("open");
-      });
-
-      apercuOverlay.addEventListener("click", (e) => {
-        if (e.target === apercuOverlay) {
-          apercuOverlay.classList.remove("open");
-        }
-      });
-    }
-
+      }
+    });
+  }
   </script>
 
  
